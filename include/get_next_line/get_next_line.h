@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 18:33:21 by atamas            #+#    #+#             */
-/*   Updated: 2024/03/26 19:34:14 by atamas           ###   ########.fr       */
+/*   Created: 2023/12/10 19:09:37 by atamas            #+#    #+#             */
+/*   Updated: 2024/01/09 23:32:13 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	main(int argc, char *argv[])
-{
-	if (argc != 2)
-		write(2, "Error\n", 7);
-	
-}
+char	*get_next_line(int fd);
+char	*ft_strchr(const char *string, int c, int *nline_pos);
+int		ft_strlen(const char *string);
+#endif

@@ -1,7 +1,8 @@
 NAME = so_long
 CC = cc
 FLAGS = -Wall -Werror -Wextra
-SRC = src/error.c
+GET_NEXT_LINE = include/get_next_line/get_next_line.c include/get_next_line/get_next_line_utils.c
+SRC = src/error.c $(GET_NEXT_LINE)
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

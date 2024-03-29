@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/03/29 02:08:04 by atamas           ###   ########.fr       */
+/*   Created: 2023/12/10 19:09:37 by atamas            #+#    #+#             */
+/*   Updated: 2024/01/09 20:57:42 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-#include "../include/libft/libft.h"
-#include "../include/get_next_line/get_next_line.h"
-
-typedef struct s_map
-{
-		t_list	*next;
-		t_list	*previous;
-		char	*data;
-		int		index;
-} t_map;
-
+char	*get_next_line(int fd);
+char	*ft_strchr(const char *string, int c, int *nline_pos);
+int		ft_strlen(const char *string);
 #endif
