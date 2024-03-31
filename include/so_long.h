@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/03/29 02:08:04 by atamas           ###   ########.fr       */
+/*   Updated: 2024/03/31 17:01:47 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 typedef struct s_map
 {
-		t_list	*next;
-		t_list	*previous;
+		t_map	*next;
+		t_map	*previous;
 		char	*data;
 		int		index;
 } t_map;
