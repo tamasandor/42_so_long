@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:59:22 by atamas            #+#    #+#             */
-/*   Updated: 2024/01/10 15:50:23 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/01 01:03:08 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ char	*create_copy_return(char *my_static, char *temp, int *myline)
 	int		i;
 	int		j;
 
-	len_string = ft_strlen(my_static);
-	len_temp = ft_strlen(temp);
+	len_string = ft_strlen_gnl(my_static);
+	len_temp = ft_strlen_gnl(temp);
 	*myline = len_string + len_temp;
 	i = 0;
 	j = 0;
@@ -60,7 +60,7 @@ char	*ft_static_handler(char	*static_str, char *string, int nline_pos)
 	i = nline_pos + 1;
 	if (i > 0 && string[i - 1] == '\n')
 	{
-		memory = malloc(sizeof(char) * (ft_strlen(static_str + i) + 1));
+		memory = malloc(sizeof(char) * (ft_strlen_gnl(static_str + i) + 1));
 		if (!memory)
 			return (free(static_str), NULL);
 		while (static_str[j + i] != '\0')
@@ -109,7 +109,7 @@ char	*ft_read(int fd, char	*my_static, int *nline_pos, int *myline)
 	int		read_val;
 
 	read_val = 1;
-	while (ft_strchr(my_static, '\n', nline_pos) == NULL && read_val > 0)
+	while (ft_strchr_gnl(my_static, '\n', nline_pos) == NULL && read_val > 0)
 	{
 		temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		read_val = read(fd, temp, BUFFER_SIZE);
@@ -134,7 +134,7 @@ char	*get_next_line(int fd)
 	{
 		if (my_static)
 			free(my_static);
-		return (NULL, my_static = NULL);
+		return (my_static = NULL, NULL);
 	}
 	my_static = ft_read(fd, my_static, &nline_pos, &myline);
 	if (my_static == NULL)

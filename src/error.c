@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:33:21 by atamas            #+#    #+#             */
-/*   Updated: 2024/03/29 02:09:29 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/01 02:10:15 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ int	main(int argc, char *argv[])
 	{
 		fd = file_handler(argv[1]);
 		if (fd > -1)
-			parse_check(&map);
+			write(1, "s\n", 2);
 		else
-			write(1, "Error\nFile error\n", 18);
+			write(2, "Error\nFile error\n", 18);
+		close(fd);
 	}
 	else
-		write(1, "Error\nFile name is not valid!\n", 31);
+		write(2, "Error\nFile name is not valid!\n", 31);
 }

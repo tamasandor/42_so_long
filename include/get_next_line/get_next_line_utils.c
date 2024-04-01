@@ -6,13 +6,13 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:08:59 by atamas            #+#    #+#             */
-/*   Updated: 2024/01/09 23:39:19 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/01 00:51:24 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-int	ft_strlen(const char *string)
+int	ft_strlen_gnl(const char *string)
 {
 	int	len;
 
@@ -24,7 +24,7 @@ int	ft_strlen(const char *string)
 	return (len);
 }
 
-char	*ft_strchr(const char *string, int c, int *nline_pos)
+char	*ft_strchr_gnl(const char *string, int c, int *nline_pos)
 {
 	char	ch;
 	int		i;
