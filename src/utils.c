@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/02 00:11:41 by atamas           ###   ########.fr       */
+/*   Created: 2024/04/01 23:28:04 by atamas            #+#    #+#             */
+/*   Updated: 2024/04/02 00:11:17 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../include/so_long.h"
 
-# include "../include/libft/libft.h"
-# include "../include/get_next_line/get_next_line.h"
-# include <unistd.h>
-# include <stdio.h>
-
-
-typedef struct s_map
+int	list_len(t_map **map)
 {
-	char			*data;
-	struct s_map	*next;
-}	t_map;
+	int		i;
+	t_map	*temp;
 
-int	list_len(t_map **map);
-void	free_memory(char **memory);
+	i = 0;
+	temp = *map;
+	while (temp)
+	{
+		i++;
+		temp = temp->next;
+	}
+	return (i);
+}
 
-#endif
+void	free_memory(char **memory)
+{
+	int	i;
+
+	i = 0;
+	while (memory[i])
+		free(memory[i++]);
+	free(memory);
+}
