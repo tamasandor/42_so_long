@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:33:21 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/03 23:46:09 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/04 00:47:03 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,39 @@ int	map_is_rectangular(t_map **map)
 	return (1);
 }
 
-int	check_map(t_map **map)
+/* int	map_is_valid(t_map **map, t_mapchars **mapchars)
+{
+	t_map		*temp;
+	t_mapchars	*chars;
+
+	chars = malloc(sizeof(t_mapchars));
+	temp = *map;
+	while (temp->next)
+	{
+		
+	}
+	
+} */
+
+int	check_map(t_map **map, t_mapchars **chars)
 {
 	char	**map_array;
 	int		map_len;
 
-	if (map_is_rectangular(map))
+	if (!*map)
+	{
+		write(2, "Error\nMap is empty\n", 20);
+		exit(1);
+	}
+	if (map_is_rectangular(map)) /*  && map_is_valid(map, chars) */
 	{
 		map_len = list_len(map);
 		map_array = fill_array(map, map_len);
+		/* if (!map_is_solvable(map_array, map_len))
+		{
+			free_memory(map_array);
+			exit(free_nodes(map, "Error\nMap is not solvable\n"));
+		} */
 		free_memory(map_array);
 		return (1);
 	}
@@ -122,7 +146,7 @@ int	check_map(t_map **map)
 		exit(free_nodes(map, "Error\nInvalid map\n"));
 }
 
-int	file_handler(char *name, t_map **map)
+int	file_handler(char *name, t_map **map, t_mapchars **chars)
 {
 	int	fd;
 	int	valid;
@@ -132,7 +156,7 @@ int	file_handler(char *name, t_map **map)
 	{
 		parse(fd, map);
 		close(fd);
-		check_map(map);
+		check_map(map, chars);
 		free_nodes(map, "freenodes\n");
 	}
 	else
@@ -144,9 +168,11 @@ int	file_handler(char *name, t_map **map)
 
 int	main(int argc, char *argv[])
 {
-	t_map	*map;
+	t_map		*map;
+	t_mapchars	*mapchars;
 
 	map = NULL;
+	mapchars = NULL;
 	if (argc != 2)
 	{
 		write(2, "Error\nInvalid number of arguments\n", 35);
@@ -154,7 +180,7 @@ int	main(int argc, char *argv[])
 	}
 	if (valid_name(argv[1]) == 1)
 	{
-		file_handler(argv[1], &map);
+		file_handler(argv[1], &map, &mapchars);
 	}
 	else
 	{

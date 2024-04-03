@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/03 22:53:51 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/04 00:24:02 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ typedef struct s_map
 	int				len;
 	struct s_map	*next;
 }	t_map;
+
+typedef struct s_mapchars
+{
+	int	collectible;
+	int	exit;
+	int	starting_pos;
+}	t_mapchars;
+
 
 int		list_len(t_map **map);
 void	free_memory(char **memory);
