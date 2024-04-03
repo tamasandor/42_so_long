@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 23:28:04 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/02 00:11:17 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/03 22:54:11 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,22 @@ void	free_memory(char **memory)
 	while (memory[i])
 		free(memory[i++]);
 	free(memory);
+}
+
+int	free_nodes(t_map **map, char *txt)
+{
+	t_map	*temp;
+	t_map	*ptr;
+
+	ptr = *map;
+	while (ptr)
+	{
+		temp = ptr;
+		ptr = ptr->next;
+		free(temp->data);
+		free(temp);
+	}
+	if (txt)
+		write(2, txt, ft_strlen(txt));
+	return (1);
 }
