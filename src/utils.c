@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 23:28:04 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/03 22:54:11 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/04 23:08:41 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	list_len(t_map **map)
 
 	i = 0;
 	temp = *map;
+	if (!temp)
+		return (0);
 	while (temp)
 	{
 		i++;
