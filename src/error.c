@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:33:21 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/05 16:20:59 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/06 23:41:43 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int	main(int argc, char *argv[])
 	{
 		map_len = prior_check(argv[1], &map, &mapchars);
 		free_nodes(&map, "freenodes\n");
+		window();
 	}
 	else
 	{

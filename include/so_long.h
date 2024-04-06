@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/05 16:19:31 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/06 23:41:33 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int		free_nodes(t_map **map, char *txt);
 int		check_map(t_map **map, t_mapchars **chars);
 void	flood_fill(int x, int y, char **map);
 char	**fill_array(t_map **map, int map_len);
+int		window(void);
 
 #endif
