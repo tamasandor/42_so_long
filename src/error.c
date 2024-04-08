@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:33:21 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/08 13:43:02 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/08 17:05:27 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,9 @@ int	main(int argc, char *argv[])
 	if (valid_name(argv[1]) == 1)
 	{
 		map_len = prior_check(argv[1], &map, &mapchars);
-		free_nodes(&map, "freenodes\n");
-		window();
+		argv = fill_array(&map, map_len);
+		free_nodes(&map, NULL);
+		game(argv, &mapchars);
 	}
 	else
 	{

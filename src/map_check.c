@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:14:57 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/05 23:02:55 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/08 16:51:49 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int	check_map(t_map **map, t_mapchars **chars)
 			i++;
 		}
 		free_memory(map_array);
-		return (free(*chars), map_len);
+		return (map_len);
 	}
 	else
 		exit(free_nodes(map, "Error\nInvalid map\n"));
