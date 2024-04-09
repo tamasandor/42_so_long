@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:14:57 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/08 16:51:49 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/09 11:11:37 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ int	contains_not_correct(t_mapchars **mapchars, char *str, int y)
 			(*mapchars)->exit += 1;
 		else if (str[i] == 'P')
 		{
-			(*mapchars)->start += 1;
-			(*mapchars)->starting_x = i;
-			(*mapchars)->starting_y = y;
+			(*mapchars)->player += 1;
+			(*mapchars)->player_x = i;
+			(*mapchars)->player_y = y;
 		}
 		else if (str[i] != '1' && str[i] != '0')
 			return (free(*mapchars), 1);
@@ -105,7 +105,7 @@ int	map_is_valid(t_map **map, t_mapchars **mapchars)
 		exit(free_nodes(map, "Error\nMemory allocation failed\n"));
 	(*mapchars)->collectible = 0;
 	(*mapchars)->exit = 0;
-	(*mapchars)->start = 0;
+	(*mapchars)->player = 0;
 	y = 0;
 	while (temp)
 	{
@@ -115,7 +115,7 @@ int	map_is_valid(t_map **map, t_mapchars **mapchars)
 		y++;
 	}
 	if ((*mapchars)->collectible < 1 || (*mapchars)->exit != 1
-		|| (*mapchars)->start != 1)
+		|| (*mapchars)->player != 1)
 		return (free(*mapchars), 1);
 	return (1);
 }
@@ -131,7 +131,7 @@ int	check_map(t_map **map, t_mapchars **chars)
 	if (map_len > 2 && map_is_rectangular(map) && map_is_valid(map, chars))
 	{
 		map_array = fill_array(map, map_len);
-		flood_fill((*chars)->starting_x, (*chars)->starting_y, map_array);
+		flood_fill((*chars)->player_x, (*chars)->player_y, map_array);
 		while (map_array[i])
 		{
 			if (ft_strchr(map_array[i], 'E') || ft_strchr(map_array[i], 'C'))

@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/08 17:15:23 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/09 11:33:37 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct s_mapchars
 {
 	int	collectible;
 	int	exit;
-	int	start;
-	int	starting_x;
-	int	starting_y;
+	int	player;
+	int	player_x;
+	int	player_y;
 }	t_mapchars;
 
 typedef struct s_vars
@@ -50,5 +50,7 @@ int		check_map(t_map **map, t_mapchars **chars);
 void	flood_fill(int x, int y, char **map);
 char	**fill_array(t_map **map, int map_len);
 int		game(char **map, t_mapchars **chars);
+void	print_multi(char **map);
+void	move_forward(t_vars *vars);
 
 #endif

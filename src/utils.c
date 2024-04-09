@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 23:28:04 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/04 23:08:41 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/09 11:35:14 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,18 @@ int	free_nodes(t_map **map, char *txt)
 	if (txt)
 		write(2, txt, ft_strlen(txt));
 	return (1);
+}
+
+void	print_multi(char **map)
+{
+	int	y;
+
+	y = 0;
+	printf("---------\n");
+	while(map[y])
+	{
+		printf("%s\n", map[y]);
+		y++;
+	}
+	printf("---------\n");
 }
