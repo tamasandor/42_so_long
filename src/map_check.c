@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:14:57 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/09 11:11:37 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/10 19:14:45 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,11 @@ int	contains_not_correct(t_mapchars **mapchars, char *str, int y)
 		if (str[i] == 'C')
 			(*mapchars)->collectible += 1;
 		else if (str[i] == 'E')
+		{
+			(*mapchars)->exit_y = y;
+			(*mapchars)->exit_x = i;
 			(*mapchars)->exit += 1;
+		}
 		else if (str[i] == 'P')
 		{
 			(*mapchars)->player += 1;
@@ -116,7 +120,7 @@ int	map_is_valid(t_map **map, t_mapchars **mapchars)
 	}
 	if ((*mapchars)->collectible < 1 || (*mapchars)->exit != 1
 		|| (*mapchars)->player != 1)
-		return (free(*mapchars), 1);
+		return (free(*mapchars), 0);
 	return (1);
 }
 

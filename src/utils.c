@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 23:28:04 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/09 11:35:14 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/10 19:40:35 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,20 @@ void	print_multi(char **map)
 
 	y = 0;
 	printf("---------\n");
-	while(map[y])
+	while (map[y])
 	{
 		printf("%s\n", map[y]);
 		y++;
 	}
 	printf("---------\n");
+}
+
+void	render_exit(t_vars *args)
+{
+	int	x;
+	int	y;
+
+	x = args->mapchars->exit_x;
+	y = args->mapchars->exit_y;
+	args->map[y][x] = 'E';
 }

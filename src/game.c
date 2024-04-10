@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 23:35:31 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/09 13:45:19 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/10 19:45:21 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../mlx-linux/mlx.h"
 #include "../include/so_long.h"
 
-void	clean_exit(t_vars *vars)
+int	clean_exit(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
@@ -24,21 +24,28 @@ void	clean_exit(t_vars *vars)
 	exit (0);
 }
 
-int	can_move(t_vars *vars, int x, int y)
+int	can_move(t_vars *vars, int new_x, int new_y)
 {
-	if (vars->map[y][x] == 'C')
+	if (vars->map[new_y][new_x] == 'C')
 	{
 		vars->mapchars->collectible -= 1;
+		vars->map[new_y][new_x] = 'P';
 		return (1);
 	}
-	else if (vars->map[y][x] == 'E')
+	else if (vars->map[new_y][new_x] == 'E')
+	{
+		vars->map[new_y][new_x] = 'P';
 		return (1);
-	else if (vars->map[y][x] == '0')
+	}
+	else if (vars->map[new_y][new_x] == '0')
+	{
+		vars->map[new_y][new_x] = 'P';
 		return (1);
+	}
 	return (0);
 }
 
-void	move_forward(t_vars *vars) // check in a function if the move is possibble and if its a collectible change the counter
+void	move_forward(t_vars *vars)
 {
 	int	new_y;
 	int	x;
@@ -47,9 +54,10 @@ void	move_forward(t_vars *vars) // check in a function if the move is possibble 
 	x = vars->mapchars->player_x;
 	if (new_y >= 0 && can_move(vars, x, new_y))
 	{
-		vars->map[new_y + 1][x] = '0'; // instead of this handle it in can move
-		vars->map[new_y][x] = 'P';
+		vars->map[new_y + 1][x] = '0';
 		vars->mapchars->player_y = new_y;
+		vars->mapchars->movements += 1;
+		printf("Moves: %d\n", vars->mapchars->movements);
 	}
 }
 
@@ -63,8 +71,9 @@ void	move_backward(t_vars *vars)
 	if (new_y >= 0 && can_move(vars, x, new_y))
 	{
 		vars->map[new_y - 1][x] = '0';
-		vars->map[new_y][x] = 'P';
 		vars->mapchars->player_y = new_y;
+		vars->mapchars->movements += 1;
+		printf("Moves: %d\n", vars->mapchars->movements);
 	}
 }
 
@@ -78,8 +87,9 @@ void	move_left(t_vars *vars)
 	if (new_x >= 0 && can_move(vars, new_x, y))
 	{
 		vars->map[y][new_x + 1] = '0';
-		vars->map[y][new_x] = 'P';
 		vars->mapchars->player_x = new_x;
+		vars->mapchars->movements += 1;
+		printf("Moves: %d\n", vars->mapchars->movements);
 	}
 }
 
@@ -93,8 +103,9 @@ void	move_right(t_vars *vars)
 	if (new_x >= 0 && can_move(vars, new_x, y))
 	{
 		vars->map[y][new_x - 1] = '0';
-		vars->map[y][new_x] = 'P';
 		vars->mapchars->player_x = new_x;
+		vars->mapchars->movements += 1;
+		printf("Moves: %d\n", vars->mapchars->movements);
 	}
 }
 
@@ -122,6 +133,9 @@ int	event_handler(int keycode, t_vars *vars)
 		printf("keycode = D\n");
 		move_right(vars);
 	}
+	if (vars->mapchars->player_x != vars->mapchars->exit_x
+		|| vars->mapchars->player_y != vars->mapchars->exit_y)
+		render_exit(vars);
 	print_multi(vars->map);
 	return (1);
 }
@@ -134,7 +148,9 @@ int	game(char **map, t_mapchars **chars)
 	vars.map = map;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "./so_long");
-	mlx_hook(vars.win, 2, 1L<<0, event_handler, &vars);
+	vars.mapchars->movements = 0;
+	mlx_hook(vars.win, 2, 1L << 0, event_handler, &vars);
+	mlx_hook(vars.win, 17, 1L << 17, clean_exit, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }

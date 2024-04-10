@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/09 11:33:37 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/10 19:42:41 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,21 @@ typedef struct s_mapchars
 {
 	int	collectible;
 	int	exit;
+	int	exit_x;
+	int	exit_y;
 	int	player;
 	int	player_x;
 	int	player_y;
+	int	movements;
 }	t_mapchars;
 
 typedef struct s_vars
 {
-	void *mlx;
-	void *win;
-	char **map;
-	t_mapchars *mapchars;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	t_mapchars	*mapchars;
 }	t_vars;
-
 
 int		list_len(t_map **map);
 void	free_memory(char **memory);
@@ -52,5 +54,6 @@ char	**fill_array(t_map **map, int map_len);
 int		game(char **map, t_mapchars **chars);
 void	print_multi(char **map);
 void	move_forward(t_vars *vars);
+void	render_exit(t_vars *args);
 
 #endif
