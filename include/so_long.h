@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/10 19:42:41 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/11 15:12:48 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_vars
 	void		*mlx;
 	void		*win;
 	char		**map;
+	void		*wall;
 	t_mapchars	*mapchars;
 }	t_vars;
 
