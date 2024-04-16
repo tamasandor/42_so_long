@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/11 15:12:48 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/16 14:39:57 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../include/libft/libft.h"
 # include "../include/get_next_line/get_next_line.h"
+# include "../mlx-linux/mlx_int.h"
+# include "../mlx-linux/mlx.h"
 # include <unistd.h>
 # include <stdio.h>
 
@@ -43,6 +45,9 @@ typedef struct s_vars
 	void		*win;
 	char		**map;
 	void		*wall;
+	void		*empty;
+	void		*player;
+	void		*money;
 	t_mapchars	*mapchars;
 }	t_vars;
 
@@ -56,5 +61,6 @@ int		game(char **map, t_mapchars **chars);
 void	print_multi(char **map);
 void	move_forward(t_vars *vars);
 void	render_exit(t_vars *args);
+void	render(t_vars *vars);
 
 #endif
