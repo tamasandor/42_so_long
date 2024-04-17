@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/16 14:39:57 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/17 15:11:38 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_vars
 	void		*empty;
 	void		*player;
 	void		*money;
+	int			len_x;
+	int			len_y;
 	t_mapchars	*mapchars;
 }	t_vars;
 
@@ -57,7 +59,7 @@ int		free_nodes(t_map **map, char *txt);
 int		check_map(t_map **map, t_mapchars **chars);
 void	flood_fill(int x, int y, char **map);
 char	**fill_array(t_map **map, int map_len);
-int		game(char **map, t_mapchars **chars);
+int		game(char **map, t_mapchars **chars, int map_len_y, int map_len_x);
 void	print_multi(char **map);
 void	move_forward(t_vars *vars);
 void	render_exit(t_vars *args);

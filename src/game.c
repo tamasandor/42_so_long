@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 23:35:31 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/16 14:50:26 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/17 15:13:17 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int	event_handler(int keycode, t_vars *vars)
 	return (1);
 }
 
-int	game(char **map, t_mapchars **chars)
+int	game(char **map, t_mapchars **chars, int len_y, int len_x)
 {
 	t_vars	vars;
 	int		width;
@@ -161,6 +161,8 @@ int	game(char **map, t_mapchars **chars)
 	vars.empty = mlx_xpm_file_to_image(vars.mlx, "./textures/Grass.xpm", &width, &height);
 	vars.player = mlx_xpm_file_to_image(vars.mlx, "./textures/Green.xpm", &width, &height);
 	vars.money = mlx_xpm_file_to_image(vars.mlx, "./textures/Money.xpm", &width, &height);
+	vars.len_x = len_x;
+	vars.len_y = len_y;
 	render(&vars);
 	mlx_hook(vars.win, 2, 1L << 0, event_handler, &vars);
 	mlx_hook(vars.win, 17, 1L << 17, clean_exit, &vars);
