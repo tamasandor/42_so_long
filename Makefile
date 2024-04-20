@@ -20,9 +20,8 @@ $(MLX):
 
 clean:
 	@$(MAKE) -C include/libft clean
-	@$(MAKE) -C mlx-linux clean
-	@rm -f $(OBJ)
 	@$(MAKE) -C $(MLX_DIR) clean
+	@rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
