@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 23:35:31 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/17 15:13:17 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/22 22:24:40 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	clean_exit(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->empty);
 	mlx_destroy_image(vars->mlx, vars->player);
 	mlx_destroy_image(vars->mlx, vars->money);
+	mlx_destroy_image(vars->mlx, vars->back);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
 	free(vars->mapchars);
@@ -161,6 +162,7 @@ int	game(char **map, t_mapchars **chars, int len_y, int len_x)
 	vars.empty = mlx_xpm_file_to_image(vars.mlx, "./textures/Grass.xpm", &width, &height);
 	vars.player = mlx_xpm_file_to_image(vars.mlx, "./textures/Green.xpm", &width, &height);
 	vars.money = mlx_xpm_file_to_image(vars.mlx, "./textures/Money.xpm", &width, &height);
+	vars.back = mlx_xpm_file_to_image(vars.mlx, "./textures/Back.xpm", &width, &height);
 	vars.len_x = len_x;
 	vars.len_y = len_y;
 	render(&vars);

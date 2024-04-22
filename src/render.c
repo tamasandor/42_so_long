@@ -6,33 +6,50 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:23:48 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/16 14:45:01 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/22 22:48:08 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	render(t_vars *vars)
+void render(t_vars *vars)
 {
-	int	x;
-	int	y;
+    int x, y;
+    int viewport_size = 7;  // Number of tiles from the player to display in each direction
+    int tile_size = 64;     // Size of each tile in pixels
 
-	y = 0;
-	while (vars->map[y] != NULL)
-	{
-		x = 0;
-		while (vars->map[y][x])
-		{
-			if (vars->map[y][x] == '0')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->empty, x * 64, y * 64);
-			else if (vars->map[y][x] == '1')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, x * 64, y * 64);
-			else if (vars->map[y][x] == 'C')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->money, x * 64, y * 64);
-			else if (vars->map[y][x] == 'P')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->player, x * 64, y * 64);
-			x++;
-		}
-		y++;
-	}
+    // Calculate viewport boundaries
+    int start_x = vars->mapchars->player_x - viewport_size;
+    int start_y = vars->mapchars->player_y - viewport_size;
+    int end_x = vars->mapchars->player_x + 25;
+    int end_y = vars->mapchars->player_y + 11;
+
+    // Clamp the viewport to the map boundaries
+    start_x = (start_x < 0) ? 0 : start_x;
+    start_y = (start_y < 0) ? 0 : start_y;
+    end_x = (end_x >= vars->len_x) ? vars->len_x - 1: end_x;
+    end_y = (end_y >= vars->len_y) ? vars->len_y - 1 : end_y;
+	start_x = (vars->mapchars->player_x > (end_x - start_x) / 2) ? (end_x - 29) : start_x;
+	start_y = (vars->mapchars->player_y > (end_y - start_y) / 2) ? (end_y - 18) : start_y;
+    // Render only the tiles within the viewport
+    for (y = start_y; y <= end_y; y++)
+    {
+        for (x = start_x; x <= end_x; x++)
+        {
+            char tile = vars->map[y][x];
+            void *img = NULL;
+            if (tile == '0')
+                img = vars->empty;
+            else if (tile == '1')
+                img = vars->wall;
+            else if (tile == 'C')
+                img = vars->money;
+            else if (tile == 'P')
+                img = vars->player;
+
+            if (img != NULL)
+                mlx_put_image_to_window(vars->mlx, vars->win, img, (x - start_x) * tile_size, (y - start_y) * tile_size);
+        }
+    }
+	// mlx_put_image_to_window(vars->mlx, vars->win, backg, 0, 0);
 }
