@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:14:57 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/10 19:14:45 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/22 23:18:10 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	contains_not_correct(t_mapchars **mapchars, char *str, int y)
 int	map_is_valid(t_map **map, t_mapchars **mapchars)
 {
 	t_map		*temp;
-	int			i;
 	int			y;
 
 	if (map_is_closed(map) == 0)

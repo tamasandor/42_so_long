@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:33:21 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/17 15:07:12 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/22 23:17:54 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,10 @@ void	parse(int fd, t_map **map)
 char	**fill_array(t_map **map, int map_len)
 {
 	int		i;
-	int		array_len;
 	t_map	*temp;
 	char	**map_array;
 
 	i = 0;
-	array_len = 0;
 	temp = *map;
 	map_array = malloc(sizeof(char *) * (map_len + 1));
 	if (!map_array)

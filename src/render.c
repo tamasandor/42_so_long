@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:23:48 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/22 22:48:08 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/22 23:45:12 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void render(t_vars *vars)
     start_y = (start_y < 0) ? 0 : start_y;
     end_x = (end_x >= vars->len_x) ? vars->len_x - 1: end_x;
     end_y = (end_y >= vars->len_y) ? vars->len_y - 1 : end_y;
-	start_x = (vars->mapchars->player_x > (end_x - start_x) / 2) ? (end_x - 29) : start_x;
-	start_y = (vars->mapchars->player_y > (end_y - start_y) / 2) ? (end_y - 18) : start_y;
+	start_x = ((vars->mapchars->player_x > (end_x - start_x) / 2) && end_x - 29 > -1) ? (end_x - 29) : start_x;
+	start_y = (vars->mapchars->player_y > ((end_y - start_y) / 2) && end_y - 18 > -1) ? (end_y - 18) : start_y;
     // Render only the tiles within the viewport
     for (y = start_y; y <= end_y; y++)
     {
