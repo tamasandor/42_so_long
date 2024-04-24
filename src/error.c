@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:33:21 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/22 23:17:54 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/24 18:26:39 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,33 +103,6 @@ int	prior_check(char *name, t_map **map, t_mapchars **chars)
 	else
 	{
 		write(2, "Error\nFile error\n", 18);
-		exit(1);
-	}
-}
-
-int	main(int argc, char *argv[])
-{
-	t_map		*map;
-	t_mapchars	*mapchars;
-	int			map_len;
-
-	map = NULL;
-	mapchars = NULL;
-	if (argc != 2)
-	{
-		write(2, "Error\nInvalid number of arguments\n", 35);
-		exit(1);
-	}
-	if (valid_name(argv[1]) == 1)
-	{
-		map_len = prior_check(argv[1], &map, &mapchars);
-		argv = fill_array(&map, map_len);
-		free_nodes(&map, NULL);
-		game(argv, &mapchars, map_len, ft_strlen(argv[0]));
-	}
-	else
-	{
-		write(2, "Error\nFile name is not valid!\n", 31);
 		exit(1);
 	}
 }
