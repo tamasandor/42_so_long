@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:23:48 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/24 11:26:17 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/24 12:28:31 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void render(t_vars *vars)
     // Calculate viewport boundaries
     int start_x = vars->mapchars->player_x - viewport_size;
     int start_y = vars->mapchars->player_y - 14;
-    int end_x = vars->mapchars->player_x + 25;
+    int end_x = vars->mapchars->player_x + 29;
     int end_y = vars->mapchars->player_y + 14;
 
     // Clamp the viewport to the map boundaries
