@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:23:48 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/22 23:45:12 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/24 11:26:17 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,18 @@ void render(t_vars *vars)
 
     // Calculate viewport boundaries
     int start_x = vars->mapchars->player_x - viewport_size;
-    int start_y = vars->mapchars->player_y - viewport_size;
+    int start_y = vars->mapchars->player_y - 14;
     int end_x = vars->mapchars->player_x + 25;
-    int end_y = vars->mapchars->player_y + 11;
+    int end_y = vars->mapchars->player_y + 14;
 
     // Clamp the viewport to the map boundaries
     start_x = (start_x < 0) ? 0 : start_x;
     start_y = (start_y < 0) ? 0 : start_y;
-    end_x = (end_x >= vars->len_x) ? vars->len_x - 1: end_x;
+    end_x = (end_x >= vars->len_x) ? vars->len_x - 1 : end_x;
     end_y = (end_y >= vars->len_y) ? vars->len_y - 1 : end_y;
 	start_x = ((vars->mapchars->player_x > (end_x - start_x) / 2) && end_x - 29 > -1) ? (end_x - 29) : start_x;
-	start_y = (vars->mapchars->player_y > ((end_y - start_y) / 2) && end_y - 18 > -1) ? (end_y - 18) : start_y;
+	start_y = (vars->mapchars->player_y > 14 && end_y - 16 > -1) ? (end_y - 16) : start_y;
+
     // Render only the tiles within the viewport
     for (y = start_y; y <= end_y; y++)
     {
