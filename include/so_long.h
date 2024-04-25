@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/24 18:31:00 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/25 13:34:06 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int		check_map(t_map **map, t_mapchars **chars);
 void	flood_fill(int x, int y, char **map);
 char	**fill_array(t_map **map, int map_len);
 int		game(char **map, t_mapchars **chars, int map_len_y, int map_len_x);
+int		clean_exit(t_vars *vars);
 void	move_right(t_vars *vars);
 void	move_left(t_vars *vars);
 void	move_backward(t_vars *vars);

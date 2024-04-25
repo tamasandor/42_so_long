@@ -6,11 +6,28 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 23:35:31 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/24 18:29:14 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/25 13:25:44 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	parse_images(t_vars *v)
+{
+	int	w;
+	int	h;
+
+	v->wall = mlx_xpm_file_to_image(v->mlx, "./textures/Brick.xpm", &w, &h);
+	v->empty = mlx_xpm_file_to_image(v->mlx, "./textures/Grass.xpm", &w, &h);
+	v->player = mlx_xpm_file_to_image(v->mlx, "./textures/Green.xpm", &w, &h);
+	v->money = mlx_xpm_file_to_image(v->mlx, "./textures/Money.xpm", &w, &h);
+	v->back = mlx_xpm_file_to_image(v->mlx, "./textures/Back.xpm", &w, &h);
+	if (!(v->wall && v->empty && v->player && v->money && v->back))
+	{
+		write(2, "Error\nImage reading failed\n", 28);
+		clean_exit(v);
+	}
+}
 
 int	clean_exit(t_vars *vars)
 {
@@ -57,19 +74,18 @@ int	event_handler(int keycode, t_vars *vars)
 int	game(char **map, t_mapchars **chars, int len_y, int len_x)
 {
 	t_vars	vars;
-	int		width;
-	int		height;
 
 	vars.mapchars = *chars;
 	vars.map = map;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "./so_long");
 	vars.mapchars->movements = 0;
-	vars.wall = mlx_xpm_file_to_image(vars.mlx, "./textures/Brick.xpm", &width, &height);
-	vars.empty = mlx_xpm_file_to_image(vars.mlx, "./textures/Grass.xpm", &width, &height);
-	vars.player = mlx_xpm_file_to_image(vars.mlx, "./textures/Green.xpm", &width, &height);
-	vars.money = mlx_xpm_file_to_image(vars.mlx, "./textures/Money.xpm", &width, &height);
-	vars.back = mlx_xpm_file_to_image(vars.mlx, "./textures/Back.xpm", &width, &height);
+	vars.wall = NULL;
+	vars.empty = NULL;
+	vars.player = NULL;
+	vars.money = NULL;
+	vars.back = NULL;
+	parse_images(&vars);
 	vars.len_x = len_x;
 	vars.len_y = len_y;
 	render(&vars);
