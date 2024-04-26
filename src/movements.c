@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:22:29 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/24 18:29:09 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:16:15 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	can_move(t_vars *vars, int new_x, int new_y)
 	{
 		if (vars->mapchars->collectible == 0)
 		{
-			printf("You won\n");
+			/* Put a screen instead */
+			mlx_put_image_to_window(vars->mlx, vars->win, vars->wins, 0, 0);
+			ft_printf("You won\n");
 		}
 		vars->map[new_y][new_x] = 'P';
 		return (1);
@@ -49,8 +51,7 @@ void	move_forward(t_vars *vars)
 		vars->map[new_y + 1][x] = '0';
 		vars->mapchars->player_y = new_y;
 		vars->mapchars->movements += 1;
-		printf("x %d y %d", x, new_y);
-		printf("Moves: %d\n", vars->mapchars->movements);
+		ft_printf("Moves: %d\n", vars->mapchars->movements);
 	}
 }
 
@@ -66,8 +67,7 @@ void	move_backward(t_vars *vars)
 		vars->map[new_y - 1][x] = '0';
 		vars->mapchars->player_y = new_y;
 		vars->mapchars->movements += 1;
-		printf("x %d y %d", x, new_y);
-		printf("Moves: %d\n", vars->mapchars->movements);
+		ft_printf("Moves: %d\n", vars->mapchars->movements);
 	}
 }
 
@@ -83,8 +83,7 @@ void	move_left(t_vars *vars)
 		vars->map[y][new_x + 1] = '0';
 		vars->mapchars->player_x = new_x;
 		vars->mapchars->movements += 1;
-		printf("x %d y %d", new_x, y);
-		printf("Moves: %d\n", vars->mapchars->movements);
+		ft_printf("Moves: %d\n", vars->mapchars->movements);
 	}
 }
 
@@ -100,7 +99,6 @@ void	move_right(t_vars *vars)
 		vars->map[y][new_x - 1] = '0';
 		vars->mapchars->player_x = new_x;
 		vars->mapchars->movements += 1;
-		printf("x %d y %d", new_x, y);
-		printf("Moves: %d\n", vars->mapchars->movements);
+		ft_printf("Moves: %p\n", vars->mapchars->movements);
 	}
 }

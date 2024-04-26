@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 23:35:31 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/25 13:25:44 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:16:01 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ void	parse_images(t_vars *v)
 
 	v->wall = mlx_xpm_file_to_image(v->mlx, "./textures/Brick.xpm", &w, &h);
 	v->empty = mlx_xpm_file_to_image(v->mlx, "./textures/Grass.xpm", &w, &h);
-	v->player = mlx_xpm_file_to_image(v->mlx, "./textures/Green.xpm", &w, &h);
-	v->money = mlx_xpm_file_to_image(v->mlx, "./textures/Money.xpm", &w, &h);
-	v->back = mlx_xpm_file_to_image(v->mlx, "./textures/Back.xpm", &w, &h);
-	if (!(v->wall && v->empty && v->player && v->money && v->back))
+	v->player = mlx_xpm_file_to_image(v->mlx, "./textures/Rabbit.xpm", &w, &h);
+	v->money = mlx_xpm_file_to_image(v->mlx, "./textures/Carrot.xpm", &w, &h);
+	v->exit = mlx_xpm_file_to_image(v->mlx, "./textures/Hole.xpm", &w, &h);
+	v->open_exit = mlx_xpm_file_to_image(v->mlx, "./textures/Open.xpm", &w, &h);
+	v->wins = mlx_xpm_file_to_image(v->mlx, "./textures/Win.xpm", &w, &h);
+	if (!(v->wall && v->empty && v->player && v->money && v->exit
+			&& v->open_exit && v->wins))
 	{
 		write(2, "Error\nImage reading failed\n", 28);
 		clean_exit(v);
@@ -39,8 +42,12 @@ int	clean_exit(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->player);
 	if (vars->money)
 		mlx_destroy_image(vars->mlx, vars->money);
-	if (vars->back)
-		mlx_destroy_image(vars->mlx, vars->back);
+	if (vars->exit)
+		mlx_destroy_image(vars->mlx, vars->exit);
+	if (vars->open_exit)
+		mlx_destroy_image(vars->mlx, vars->open_exit);
+	if (vars->wins)
+		mlx_destroy_image(vars->mlx, vars->wins);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
 	free(vars->mapchars);
@@ -84,7 +91,8 @@ int	game(char **map, t_mapchars **chars, int len_y, int len_x)
 	vars.empty = NULL;
 	vars.player = NULL;
 	vars.money = NULL;
-	vars.back = NULL;
+	vars.exit = NULL;
+	vars.open_exit = NULL;
 	parse_images(&vars);
 	vars.len_x = len_x;
 	vars.len_y = len_y;

@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:26:56 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/25 13:34:06 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:05:11 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../include/libft/libft.h"
 # include "../include/get_next_line/get_next_line.h"
+# include "../include/printf/ft_printf.h"
 # include "../mlx-linux/mlx_int.h"
 # include "../mlx-linux/mlx.h"
 # include <unistd.h>
@@ -48,7 +49,9 @@ typedef struct s_vars
 	void		*empty;
 	void		*player;
 	void		*money;
-	void		*back;
+	void		*exit;
+	void		*open_exit;
+	void		*wins;
 	int			len_x;
 	int			len_y;
 	t_mapchars	*mapchars;

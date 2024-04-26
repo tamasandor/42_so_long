@@ -6,18 +6,26 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:23:48 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/24 18:02:21 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:22:21 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	*exit_render(t_vars *vars)
+{
+	if (vars->mapchars->collectible == 0)
+		return (vars->open_exit);
+	else
+		return (vars->exit);
+}
 
 void	assign_calculations(t_vars *vars, t_calculations *calc)
 {
 	calc->start_x = vars->mapchars->player_x - 7;
 	calc->start_y = vars->mapchars->player_y - 14;
 	calc->end_x = vars->mapchars->player_x + 29;
-	calc->end_y = vars->mapchars->player_y + 14;
+	calc->end_y = vars->mapchars->player_y + 16;
 	if (calc->start_x < 0)
 		calc->start_x = 0;
 	if (calc->start_y < 0)
@@ -54,6 +62,8 @@ void	render_x(t_vars *vars, int x, int y, t_calculations calc)
 			img = vars->money;
 		else if (tile == 'P')
 			img = vars->player;
+		else if (tile == 'E')
+			img = exit_render(vars);
 		x_pos = (x - calc.start_x) * 64;
 		y_pos = (y - calc.start_y) * 64;
 		if (img != NULL)
