@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:22:29 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/26 15:16:15 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/26 23:54:06 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,6 @@ void	move_right(t_vars *vars)
 		vars->map[y][new_x - 1] = '0';
 		vars->mapchars->player_x = new_x;
 		vars->mapchars->movements += 1;
-		ft_printf("Moves: %p\n", vars->mapchars->movements);
+		ft_printf("Moves: %d\n", vars->mapchars->movements);
 	}
 }
