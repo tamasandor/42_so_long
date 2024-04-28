@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 23:35:31 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/28 18:51:57 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/28 19:33:08 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	event_handler(int keycode, t_vars *vars)
 		|| vars->mapchars->player_y != vars->mapchars->exit_y)
 		render_exit(vars);
 	render(vars);
-	print_multi(vars->map);
 	return (1);
 }
 
@@ -92,6 +91,7 @@ int	game(char **map, t_mapchars *chars, int len_y, int len_x)
 	vars.money = NULL;
 	vars.exit = NULL;
 	vars.open_exit = NULL;
+	vars.end = 0;
 	parse_images(&vars);
 	vars.len_x = len_x;
 	vars.len_y = len_y;

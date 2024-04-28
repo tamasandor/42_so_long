@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:23:48 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/26 15:22:21 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/28 19:26:58 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,23 @@ void	render(t_vars *vars)
 	int				x;
 	int				y;
 
-	calc.end_x = 0;
-	calc.end_y = 0;
-	calc.start_x = 0;
-	calc.start_y = 0;
-	assign_calculations(vars, &calc);
-	y = calc.start_y;
-	while (y <= calc.end_y)
+	if (vars->mapchars->exit_x == vars->mapchars->player_x
+		&& vars->mapchars->exit_y == vars->mapchars->player_y
+		&& vars->mapchars->collectible == 0)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->wins, 0, 0);
+	else
 	{
-		x = calc.start_x;
-		render_x(vars, x, y, calc);
-		y++;
+		calc.end_x = 0;
+		calc.end_y = 0;
+		calc.start_x = 0;
+		calc.start_y = 0;
+		assign_calculations(vars, &calc);
+		y = calc.start_y;
+		while (y <= calc.end_y)
+		{
+			x = calc.start_x;
+			render_x(vars, x, y, calc);
+			y++;
+		}
 	}
 }

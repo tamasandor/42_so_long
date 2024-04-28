@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:22:29 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/26 23:54:06 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/28 19:37:31 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	can_move(t_vars *vars, int new_x, int new_y)
 {
+	if (vars->end == 1)
+		return (0);
 	if (vars->map[new_y][new_x] == 'C')
 	{
 		vars->mapchars->collectible -= 1;
@@ -23,11 +25,7 @@ int	can_move(t_vars *vars, int new_x, int new_y)
 	else if (vars->map[new_y][new_x] == 'E')
 	{
 		if (vars->mapchars->collectible == 0)
-		{
-			/* Put a screen instead */
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->wins, 0, 0);
-			ft_printf("You won\n");
-		}
+			vars->end = 1;
 		vars->map[new_y][new_x] = 'P';
 		return (1);
 	}
