@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:14:57 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/22 23:18:10 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/28 18:45:40 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	map_is_closed(t_map **map)
 	return (1);
 }
 
-int	contains_not_correct(t_mapchars **mapchars, char *str, int y)
+int	contains_not_correct(t_mapchars *mapchars, char *str, int y)
 {
 	int	i;
 
@@ -75,27 +75,27 @@ int	contains_not_correct(t_mapchars **mapchars, char *str, int y)
 	while (str[i])
 	{
 		if (str[i] == 'C')
-			(*mapchars)->collectible += 1;
+			mapchars->collectible += 1;
 		else if (str[i] == 'E')
 		{
-			(*mapchars)->exit_y = y;
-			(*mapchars)->exit_x = i;
-			(*mapchars)->exit += 1;
+			mapchars->exit_y = y;
+			mapchars->exit_x = i;
+			mapchars->exit += 1;
 		}
 		else if (str[i] == 'P')
 		{
-			(*mapchars)->player += 1;
-			(*mapchars)->player_x = i;
-			(*mapchars)->player_y = y;
+			mapchars->player += 1;
+			mapchars->player_x = i;
+			mapchars->player_y = y;
 		}
 		else if (str[i] != '1' && str[i] != '0')
-			return (free(*mapchars), 1);
+			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	map_is_valid(t_map **map, t_mapchars **mapchars)
+int	map_is_valid(t_map **map, t_mapchars *mapchars)
 {
 	t_map		*temp;
 	int			y;
@@ -103,12 +103,9 @@ int	map_is_valid(t_map **map, t_mapchars **mapchars)
 	if (map_is_closed(map) == 0)
 		return (0);
 	temp = *map;
-	*mapchars = malloc(sizeof(t_mapchars));
-	if (!*mapchars)
-		exit(free_nodes(map, "Error\nMemory allocation failed\n"));
-	(*mapchars)->collectible = 0;
-	(*mapchars)->exit = 0;
-	(*mapchars)->player = 0;
+	mapchars->collectible = 0;
+	mapchars->exit = 0;
+	mapchars->player = 0;
 	y = 0;
 	while (temp)
 	{
@@ -117,13 +114,13 @@ int	map_is_valid(t_map **map, t_mapchars **mapchars)
 		temp = temp->next;
 		y++;
 	}
-	if ((*mapchars)->collectible < 1 || (*mapchars)->exit != 1
-		|| (*mapchars)->player != 1)
-		return (free(*mapchars), 0);
+	if (mapchars->collectible < 1 || mapchars->exit != 1
+		|| mapchars->player != 1)
+		return (0);
 	return (1);
 }
 
-int	check_map(t_map **map, t_mapchars **chars)
+int	check_map(t_map **map, t_mapchars *chars)
 {
 	char	**map_array;
 	int		map_len;
@@ -134,12 +131,11 @@ int	check_map(t_map **map, t_mapchars **chars)
 	if (map_len > 2 && map_is_rectangular(map) && map_is_valid(map, chars))
 	{
 		map_array = fill_array(map, map_len);
-		flood_fill((*chars)->player_x, (*chars)->player_y, map_array);
+		flood_fill(chars->player_x, chars->player_y, map_array);
 		while (map_array[i])
 		{
 			if (ft_strchr(map_array[i], 'E') || ft_strchr(map_array[i], 'C'))
 			{
-				free(*chars);
 				free_memory(map_array);
 				exit(free_nodes(map, "Error\nMap is not solvable\n"));
 			}

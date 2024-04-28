@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:33:21 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/24 18:26:39 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/28 18:37:34 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	flood_fill(int x, int y, char **map)
 	return ;
 }
 
-int	prior_check(char *name, t_map **map, t_mapchars **chars)
+int	prior_check(char *name, t_map **map, t_mapchars *chars)
 {
 	int	fd;
 

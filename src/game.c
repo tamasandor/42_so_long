@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 23:35:31 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/26 15:16:01 by atamas           ###   ########.fr       */
+/*   Updated: 2024/04/28 18:51:57 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	clean_exit(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->wins);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
-	free(vars->mapchars);
 	free_memory(vars->map);
 	free(vars->mlx);
 	exit (0);
@@ -78,11 +77,11 @@ int	event_handler(int keycode, t_vars *vars)
 	return (1);
 }
 
-int	game(char **map, t_mapchars **chars, int len_y, int len_x)
+int	game(char **map, t_mapchars *chars, int len_y, int len_x)
 {
 	t_vars	vars;
 
-	vars.mapchars = *chars;
+	vars.mapchars = chars;
 	vars.map = map;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "./so_long");
@@ -106,11 +105,10 @@ int	game(char **map, t_mapchars **chars, int len_y, int len_x)
 int	main(int argc, char *argv[])
 {
 	t_map		*map;
-	t_mapchars	*mapchars;
+	t_mapchars	mapchars;
 	int			map_len;
 
 	map = NULL;
-	mapchars = NULL;
 	if (argc != 2)
 	{
 		write(2, "Error\nInvalid number of arguments\n", 35);
