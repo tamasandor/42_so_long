@@ -6,7 +6,7 @@
 /*   By: atamas <atamas@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:14:57 by atamas            #+#    #+#             */
-/*   Updated: 2024/04/28 18:45:40 by atamas           ###   ########.fr       */
+/*   Updated: 2024/06/08 18:04:30 by atamas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	map_is_rectangular(t_map **map)
 	prior = -1;
 	while (temp)
 	{
-		if (prior != -1 && prior != ft_strlen(temp->data))
+		if (prior != -1 && prior != (int)ft_strlen(temp->data))
 			return (0);
 		prior = ft_strlen(temp->data);
 		temp = temp->next;

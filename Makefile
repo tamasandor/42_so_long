@@ -1,6 +1,6 @@
 NAME = so_long
 CC = cc
-FLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 GET_NEXT_LINE = include/get_next_line/get_next_line.c include/get_next_line/get_next_line_utils.c
 PRINTFDIR = ./include/printf
 PRINTF = $(PRINTFDIR)/libftprintf.a
@@ -14,7 +14,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(MLX) $(PRINTF)
 	$(MAKE) -C include/libft
 	mv include/libft/libft.a ./libft.a
-	$(CC) $(FLAGS) $(OBJ) libft.a $(MLX) $(PRINTF) -lX11 -lXext -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) libft.a $(MLX) $(PRINTF) -lX11 -lXext -o $(NAME)
 	@rm libft.a
 
 $(MLX):
